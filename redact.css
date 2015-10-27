@@ -3,4 +3,5 @@ span.redacted {
     color: black;
     text-transform: uppercase;
     word-wrap: break-word;
+    font-family: monospace;
 }
