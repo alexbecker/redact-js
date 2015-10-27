@@ -1,0 +1,17 @@
+<html><head>
+<link rel="stylesheet" type="text/css" href="redact.css">
+<script type="text/javascript" src="https://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/aes.js"></script>
+<script type="text/javascript" src="unredact.js"></script>
+</head>
+
+<body>
+This should be <span class=" redacted ">U2FsdGVkX1/VBTZozdqHLWZtR8QoE5n2m9mYVPmBBtk=</span>!
+
+<form>
+    <input id="password" type="text">
+    <button type="button" onclick="unredact(document.getElementById('password').value)">Unredact</button>
+</form>
+
+
+
+</body></html>
