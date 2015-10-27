@@ -1,4 +1,5 @@
 span.redacted {
     background-color: black;
     color: black;
+    text-transform: uppercase;
 }
