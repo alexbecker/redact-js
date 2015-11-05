@@ -1,0 +1,21 @@
+{
+    "name": "redact",
+    "version": "0.1.0",
+    "description": "embed password-protected redacted text in a web page",
+    "license": "Apache-2.0",
+    "files": [
+        "redact.js",
+        "redact.css",
+        "unredact.js"
+    ],
+    "bin": "./redact.js",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/alexbecker/redact-js"
+    },
+    "dependencies": {
+        "crypto-js": "<4.0.0",
+        "jsdom": ">=1.0.0 <8.0.0",
+        "minimist": "<2.0.0"
+    }
+}
