@@ -1,19 +1,30 @@
 <html><head>
-<link rel="stylesheet" type="text/css" href="redact.css">
-<script type="text/javascript" src="https://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/aes.js"></script>
-<script type="text/javascript" src="unredact.js"></script>
-</head>
+<style>span.redacted {
+    background-color: black;
+    color: black;
+    text-transform: uppercase;
+    word-wrap: break-word;
+    font-family: monospace;
+}
+</style><script>function unredact(password) {
+    var redactedNodes = document.querySelectorAll("span.redacted");
+    for (var i=0; i<redactedNodes.length; i++) {
+        var redacted = redactedNodes[i];
+        redacted.innerHTML = CryptoJS.AES.decrypt(redacted.innerHTML, password).toString(CryptoJS.enc.Utf8);
+        redacted.className = redacted.className.replace(/(?:^|\s)redacted(?!\S)/g, " redact ");
+    }
+}
+</script><script src="https://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/aes.js"></script></head>
 
 <body>
-This should be <span class=" redacted ">U2FsdGVkX1+6itN4W7RKnzEoGOWp1NUBiK5XojTA2hc=</span>!<br>
+This should be <span class=" redacted ">U2FsdGVkX1/Q5NphLnEs5XyOXvNzYTaRHpSyF8vzn6w=</span>!<br>
 
-This should also be <span class=" redacted ">U2FsdGVkX1++jOZeV8czy2pGHwdVA4uEvTB6Ft35ivEMTk07EnsFgFCt0SQP9rI5XXJ3nPvkNNbTD0OBWol4km4zzwM5T3uM+cJMx4VwSKxzGIjz0hnvjaCdjYiEYK9X5IrmafcaR+/zCetEJVBUg04KYdHzBCumnod6IIoEqOs=</span>!
+This should also be <span class=" redacted ">U2FsdGVkX18vUjyYLGfv+jEcvwYDGw1ypQJo3BBwOdLYogbo7yBW19fCjpZEqRGRjO4X52UCKvuQluZp1qeatsVjdjboU8MdIy4Y1IKKXEoq2h5AB1MtTwYVzbCP3lygW3eF2nRE80SkXXZXv2OSz9CohB6TxSL9jXrLQq/nOe4=</span>!
 
 <form>
     <input id="password" type="text">
     <button type="button" onclick="unredact(document.getElementById('password').value)">Unredact</button>
 </form>
-
 
 
 </body></html>
