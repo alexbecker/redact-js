@@ -10,16 +10,17 @@
     var redactedNodes = document.querySelectorAll("span.redacted");
     for (var i=0; i<redactedNodes.length; i++) {
         var redacted = redactedNodes[i];
-        redacted.innerHTML = CryptoJS.AES.decrypt(redacted.innerHTML, password).toString(CryptoJS.enc.Utf8);
+        var iv = CryptoJS.enc.Hex.parse(redacted.getAttribute("data-iv"));
+        redacted.innerHTML = CryptoJS.AES.decrypt(redacted.innerHTML, password, {'iv': iv}).toString(CryptoJS.enc.Utf8);
         redacted.className = redacted.className.replace(/(?:^|\s)redacted(?!\S)/g, " redact ");
     }
 }
 </script><script src="https://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/aes.js"></script></head>
 
 <body>
-This should be <span class=" redacted ">U2FsdGVkX1/Q5NphLnEs5XyOXvNzYTaRHpSyF8vzn6w=</span>!<br>
+This should be <span class=" redacted " data-iv="d9fd581f">U2FsdGVkX1/T1GsuRey+cbuAmg5NaOBCmErwUCQPSJQ=</span>!<br>
 
-This should also be <span class=" redacted ">U2FsdGVkX18vUjyYLGfv+jEcvwYDGw1ypQJo3BBwOdLYogbo7yBW19fCjpZEqRGRjO4X52UCKvuQluZp1qeatsVjdjboU8MdIy4Y1IKKXEoq2h5AB1MtTwYVzbCP3lygW3eF2nRE80SkXXZXv2OSz9CohB6TxSL9jXrLQq/nOe4=</span>!
+This should also be <span class=" redacted " data-iv="d9fd5820">U2FsdGVkX19YOB9uM2g7xA7gBhv8q2/zJrEQ8Tsr9cODJRzKep1dyoaHnU73bv0rYVC8yn1k99XLUY8SokhILOQigYSsveiDNkz6vTp4M40eBD0/sPZKzMaKmk8GrrtTvJADYG2PCKFVPy+9V0qDpuOfG3KRPLq4Wm3wVk+ePVYwB5AEbWFhWtcTqE0gPKUb</span>!
 
 <form>
     <input id="password" type="text">
